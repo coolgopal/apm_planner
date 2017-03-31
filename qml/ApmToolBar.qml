@@ -83,6 +83,7 @@ Rectangle {
     function clearHighlightedButtons(){
         console.log("APMToolBar: clear selected buttons")
         flightDataView.setUnselected()
+        btnMakeCall.setUnselected()
         flightPlanView.setUnselected()
         initialSetupView.setUnselected()
         configTuningView.setUnselected()
@@ -140,6 +141,17 @@ Rectangle {
             label: "FLIGHT DATA"
             image: "./resources/apmplanner/toolbar/flightdata.png"
             selected: true
+            onClicked: {
+                clearHighlightedButtons()
+                globalObj.triggerFlightView()
+                setSelected()
+            }
+        }
+
+        Button {
+            id: btnMakeCall
+            label: "CALL"
+            image: "./resources/apmplanner/toolbar/btn_call.png"
             onClicked: {
                 clearHighlightedButtons()
                 globalObj.triggerFlightView()
