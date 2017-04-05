@@ -154,7 +154,7 @@ Rectangle {
             image: "./resources/apmplanner/toolbar/btn_call.png"
             onClicked: {
                 clearHighlightedButtons()
-                globalObj.triggerFlightView()
+                globalObj.triggerCallView()
                 setSelected()
             }
         }

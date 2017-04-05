@@ -201,6 +201,11 @@ void APMToolBar::setFlightViewAction(QAction *action)
     connect(this, SIGNAL(triggerFlightView()), action, SIGNAL(triggered()));
 }
 
+void APMToolBar::setCallViewAction(QAction *action)
+{
+    connect(this, SIGNAL(triggerCallView()), action, SIGNAL(triggered()));
+}
+
 void APMToolBar::setFlightPlanViewAction(QAction *action)
 {
     connect(this, SIGNAL(triggerFlightPlanView()), action, SIGNAL(triggered()));
@@ -240,6 +245,12 @@ void APMToolBar::selectFlightView()
 {
     QLOG_DEBUG() << "APMToolBar: SelectFlightView";
     emit triggerFlightView();
+}
+
+void APMToolBar::selectCallView()
+{
+    QLOG_DEBUG() << "APMToolBar: selectCallView";
+    emit triggerCallView();
 }
 
 void APMToolBar::selectFlightPlanView()

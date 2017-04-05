@@ -46,6 +46,7 @@ public:
     ~APMToolBar();
 
     void setFlightViewAction(QAction *action);
+    void setCallViewAction(QAction *action);
     void setFlightPlanViewAction(QAction *action);
     void setInitialSetupViewAction(QAction *action);
     void setConfigTuningViewAction(QAction *action);
@@ -56,7 +57,8 @@ public:
     
     void setModeText(const QString &text);
 signals:
-    void triggerFlightView();
+    void triggerFlightView();    
+    void triggerCallView();
     void triggerFlightPlanView();
     void triggerInitialSetupView();
     void triggerConfigTuningView();

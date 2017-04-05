@@ -228,6 +228,7 @@ MainWindow::MainWindow(QWidget *parent):
     // Add actions for average users (displayed next to each other)
     QList<QAction*> actions;
     actions << ui.actionFlightView;
+    actions << ui.actionCallView;
     actions << ui.actionMissionView;
     //actions << ui.actionConfiguration_2;
     actions << ui.actionHardwareConfig;
@@ -276,6 +277,7 @@ MainWindow::MainWindow(QWidget *parent):
 
     m_apmToolBar = new APMToolBar();
     m_apmToolBar->setFlightViewAction(ui.actionFlightView);
+    m_apmToolBar->setFlightViewAction(ui.actionCallView);
     m_apmToolBar->setFlightPlanViewAction(ui.actionMissionView);
     m_apmToolBar->setInitialSetupViewAction(ui.actionHardwareConfig);
     m_apmToolBar->setConfigTuningViewAction(ui.actionSoftwareConfig);
@@ -1623,6 +1625,7 @@ void MainWindow::connectCommonActions()
     perspectives->addAction(ui.actionEngineersView);
     perspectives->addAction(ui.actionMavlinkView);
     perspectives->addAction(ui.actionFlightView);
+    perspectives->addAction(ui.actionCallView);
     perspectives->addAction(ui.actionSimulation_View);
     perspectives->addAction(ui.actionMissionView);
     //perspectives->addAction(ui.actionConfiguration_2);
@@ -1724,6 +1727,7 @@ void MainWindow::connectCommonActions()
 
     // Views actions
     connect(ui.actionFlightView, SIGNAL(triggered()), this, SLOT(loadPilotView()));
+    connect(ui.actionCallView, SIGNAL(triggered()), this, SLOT(loadCallView()));
     connect(ui.actionSimulation_View, SIGNAL(triggered()), this, SLOT(loadSimulationView()));
     connect(ui.actionEngineersView, SIGNAL(triggered()), this, SLOT(loadEngineerView()));
     connect(ui.actionMissionView, SIGNAL(triggered()), this, SLOT(loadOperatorView()));
