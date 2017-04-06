@@ -70,6 +70,7 @@ signals:
 
 public slots:
     void selectFlightView();
+    void selectCallView();
     void selectFlightPlanView();
     void selectInitialSetupView();
     void selectConfigTuningView();
