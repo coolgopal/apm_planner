@@ -277,7 +277,7 @@ MainWindow::MainWindow(QWidget *parent):
 
     m_apmToolBar = new APMToolBar();
     m_apmToolBar->setFlightViewAction(ui.actionFlightView);
-    m_apmToolBar->setFlightViewAction(ui.actionCallView);
+    m_apmToolBar->setCallViewAction(ui.actionCallView);
     m_apmToolBar->setFlightPlanViewAction(ui.actionMissionView);
     m_apmToolBar->setInitialSetupViewAction(ui.actionHardwareConfig);
     m_apmToolBar->setConfigTuningViewAction(ui.actionSoftwareConfig);
@@ -561,6 +561,9 @@ void MainWindow::buildCustomWidget()
             case VIEW_FLIGHT:
                 dock = createDockWidget(pilotView,tool,tool->getTitle(),tool->objectName(),(VIEW_SECTIONS)view,location);
                 break;
+            case VIEW_CALL:
+                dock = createDockWidget(callView,tool,tool->getTitle(),tool->objectName(),(VIEW_SECTIONS)view,location);
+                break;
             case VIEW_SIMULATION:
                 dock = createDockWidget(simView,tool,tool->getTitle(),tool->objectName(),(VIEW_SECTIONS)view,location);
                 break;
@@ -621,6 +624,15 @@ void MainWindow::buildCommonWidgets()
         pilotView->setObjectName("VIEW_FLIGHT");
         pilotView->setCentralWidget(new QGCMapTool(this));
         addToCentralStackedWidget(pilotView, VIEW_FLIGHT, "Pilot");
+    }
+
+    //callView
+    if (!callView)
+    {
+        callView = new SubMainWindow(this);
+        callView->setObjectName("VIEW_CALL");
+        callView->setCentralWidget(new QGCMapTool(this));
+        addToCentralStackedWidget(callView, VIEW_CALL, "Call");
     }
 
     if (!configView)
@@ -765,6 +777,10 @@ void MainWindow::buildCommonWidgets()
         menuToDockNameMap[tempAction] = "PRIMARY_FLIGHT_DISPLAY_DOCKWIDGET";
     }
 #endif
+
+    createDockWidget(callView,new PrimaryFlightDisplayQML(this),tr("Call View"),
+                     "CALL_DISPLAY_QML_DOCKWIDGET",VIEW_CALL,Qt::LeftDockWidgetArea);
+
 
     { // Adds the Vibration Monitor Tool
         QAction* tempAction = ui.menuTools->addAction(tr("Vibration Monitor"));
@@ -984,6 +1000,10 @@ void MainWindow::loadDockWidget(QString name)
     {
         createDockWidget(centerStack->currentWidget(),new PrimaryFlightDisplayQML(this),tr("Primary Flight Display QML"),"HEAD_UP_DISPLAY_DOCKWIDGET",currentView,Qt::RightDockWidgetArea);
     }
+    else if (name == "CALL_DISPLAY_QML_DOCKWIDGET")
+    {
+        createDockWidget(centerStack->currentWidget(),new PrimaryFlightDisplayQML(this),tr("Call View QML"),"HEAD_UP_DISPLAY_DOCKWIDGET",currentView,Qt::RightDockWidgetArea);
+    }
     else if (name == "UAS_INFO_QUICKVIEW_DOCKWIDGET")
     {
         createDockWidget(centerStack->currentWidget(),new UASQuickView(this),tr("Quick View"),"UAS_INFO_QUICKVIEW_DOCKWIDGET",currentView,Qt::LeftDockWidgetArea);
@@ -1165,6 +1185,9 @@ void MainWindow::loadCustomWidget(const QString& fileName, int view)
         case VIEW_FLIGHT:
             createDockWidget(pilotView,tool,tool->getTitle(),tool->objectName()+"DOCK",(VIEW_SECTIONS)view,Qt::LeftDockWidgetArea);
             break;
+        case VIEW_CALL:
+            createDockWidget(callView,tool,tool->getTitle(),tool->objectName()+"DOCK",(VIEW_SECTIONS)view,Qt::LeftDockWidgetArea);
+            break;
         case VIEW_SIMULATION:
             createDockWidget(simView,tool,tool->getTitle(),tool->objectName()+"DOCK",(VIEW_SECTIONS)view,Qt::LeftDockWidgetArea);
             break;
@@ -1209,6 +1232,9 @@ void MainWindow::loadCustomWidget(const QString& fileName, bool singleinstance)
             break;
         case VIEW_FLIGHT:
             createDockWidget(pilotView,tool,tool->getTitle(),tool->objectName()+"DOCK",(VIEW_SECTIONS)view,Qt::LeftDockWidgetArea);
+            break;
+        case VIEW_CALL:
+            createDockWidget(callView,tool,tool->getTitle(),tool->objectName()+"DOCK",(VIEW_SECTIONS)view,Qt::LeftDockWidgetArea);
             break;
         case VIEW_SIMULATION:
             createDockWidget(simView,tool,tool->getTitle(),tool->objectName()+"DOCK",(VIEW_SECTIONS)view,Qt::LeftDockWidgetArea);
@@ -1651,6 +1677,11 @@ void MainWindow::connectCommonActions()
     {
         ui.actionFlightView->setChecked(true);
         ui.actionFlightView->activate(QAction::Trigger);
+    }
+    if (currentView == VIEW_CALL)
+    {
+        ui.actionCallView->setChecked(true);
+        ui.actionCallView->activate(QAction::Trigger);
     }
     if (currentView == VIEW_SIMULATION)
     {
@@ -2233,6 +2264,9 @@ void MainWindow::loadViewState()
         case VIEW_FLIGHT:
             centerStack->setCurrentWidget(pilotView);
             break;
+        case VIEW_CALL:
+            centerStack->setCurrentWidget(callView);
+            break;
         case VIEW_MAVLINK:
             centerStack->setCurrentWidget(mavlinkView);
             break;
@@ -2378,6 +2412,17 @@ void MainWindow::loadPilotView()
         storeViewState();
         currentView = VIEW_FLIGHT;
         ui.actionFlightView->setChecked(true);
+        loadViewState();
+    }
+}
+
+void MainWindow::loadCallView()
+{
+    if (currentView != VIEW_CALL)
+    {
+        storeViewState();
+        currentView = VIEW_CALL;
+        ui.actionCallView->setChecked(true);
         loadViewState();
     }
 }

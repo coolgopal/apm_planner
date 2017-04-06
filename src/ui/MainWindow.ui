@@ -122,6 +122,7 @@
      <string>Views</string>
     </property>
     <addaction name="actionFlightView"/>
+    <addaction name="actionCallView"/>
     <addaction name="actionMissionView"/>
     <addaction name="actionHardwareConfig"/>
     <addaction name="actionSoftwareConfig"/>

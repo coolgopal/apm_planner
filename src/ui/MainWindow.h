@@ -233,6 +233,8 @@ public slots:
     void loadUnconnectedView();
     /** @brief Load view for pilot */
     void loadPilotView();
+    /** @brief Load view for SIP calling */
+    void loadCallView();
     /** @brief Load view for simulation */
     void loadSimulationView();
     /** @brief Load view for engineer */
@@ -352,6 +354,7 @@ protected:
         VIEW_ENGINEER,
         VIEW_MISSION,
         VIEW_FLIGHT,
+        VIEW_CALL,
         VIEW_SIMULATION,
         VIEW_MAVLINK,
         VIEW_FIRMWAREUPDATE,
@@ -425,6 +428,7 @@ protected:
     // Center widgets
     QPointer<SubMainWindow> plannerView;
     QPointer<SubMainWindow> pilotView;
+    QPointer<SubMainWindow> callView;
     QPointer<SubMainWindow> configView;
     QPointer<SubMainWindow> softwareConfigView;
     QPointer<SubMainWindow> mavlinkView;
