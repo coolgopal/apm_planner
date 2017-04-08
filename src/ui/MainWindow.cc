@@ -60,6 +60,7 @@ This file is part of the QGROUNDCONTROL project
 #include "AP2DataPlot2D.h"
 #include "MissionElevationDisplay.h"
 #include "LinkManagerFactory.h"
+#include "callviewwidget.h"
 
 #ifdef QGC_OSG_ENABLED
 #include "Q3DWidgetFactory.h"
@@ -631,7 +632,7 @@ void MainWindow::buildCommonWidgets()
     {
         callView = new SubMainWindow(this);
         callView->setObjectName("VIEW_CALL");
-        callView->setCentralWidget(new QGCMapTool(this));
+        callView->setCentralWidget(new CallViewWidget(this));
         addToCentralStackedWidget(callView, VIEW_CALL, "Call");
     }
 
