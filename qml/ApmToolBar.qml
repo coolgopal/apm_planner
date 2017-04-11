@@ -149,17 +149,6 @@ Rectangle {
         }
 
         Button {
-            id: btnMakeCall
-            label: "CALL"
-            image: "./resources/apmplanner/toolbar/btn_call.png"
-            onClicked: {
-                clearHighlightedButtons()
-                globalObj.triggerCallView()
-                setSelected()
-            }
-        }
-
-        Button {
             id: flightPlanView
             label: "FLIGHT PLAN"
             image: "./resources/apmplanner/toolbar/flightplanner.png"
@@ -229,6 +218,19 @@ Rectangle {
                 }
             }
         }
+
+        Button {
+            id: btnMakeCall
+            label: "CALL"
+            image: "./resources/apmplanner/toolbar/start_call.png"
+            onClicked: {
+//                clearHighlightedButtons()
+                globalObj.triggerCallView()
+//                setSelected()
+            }
+        }
+
+
 
 // [TODO] removed from toolbar until we have simulation working
 //        Button {
