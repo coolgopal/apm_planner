@@ -260,6 +260,39 @@ Rectangle {
             color: "black"
         }
 
+        Rectangle {
+            id: sipIDRect
+
+            width: 100
+            height: parent.height/3
+            anchors.verticalCenter: parent.verticalCenter
+            color: "black"
+            radius: 3
+            Text {
+                id: sipID
+                text: qsTr("SIP ID: aqs346f")
+                color: "white"
+            }
+
+//                Text {
+//                    id: sipID
+//                    anchors.centerIn: parent
+//                    verticalAlignment: Text.AlignVCenter
+//                    horizontalAlignment: Text.AlignHCenter
+//                    anchors.verticalCenter: parent.verticalCenter
+//                    font.pixelSize: 20
+//                    smooth: true
+//                }
+
+        }
+
+        Rectangle { // Spacer
+            id: statusSpacerId2
+            width: 5
+            height: parent.height
+            color: "black"
+        }
+
         StatusDisplay {
             id: statusDisplayId
             width: 110
