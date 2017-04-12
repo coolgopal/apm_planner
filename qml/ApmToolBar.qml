@@ -227,12 +227,14 @@ Rectangle {
                 if (!checked)
                 {
                     checked = true;
+                    btnMakeCall.label = "END CALL"
                     btnMakeCall.image = "./resources/apmplanner/toolbar/end_call.png"
                     setImage()
                 }
                 else
                 {
                     checked = false;
+                    btnMakeCall.label = "CALL"
                     btnMakeCall.image = "./resources/apmplanner/toolbar/start_call.png"
                     setImage()
                 }
