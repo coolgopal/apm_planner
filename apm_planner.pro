@@ -961,6 +961,8 @@ OTHER_FILES += \
     qml/resources/apmplanner/toolbar/light_tuningconfig_icon.png \
     qml/resources/apmplanner/toolbar/flightdata.png \
     qml/resources/apmplanner/toolbar/btn_call.png \
+    qml/resources/apmplanner/toolbar/start_call.png \
+    qml/resources/apmplanner/toolbar/end_call.png \
     qml/resources/apmplanner/toolbar/disconnect.png \
     qml/resources/apmplanner/toolbar/donate.png
 

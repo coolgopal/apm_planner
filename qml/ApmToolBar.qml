@@ -224,9 +224,20 @@ Rectangle {
             label: "CALL"
             image: "./resources/apmplanner/toolbar/start_call.png"
             onClicked: {
-//                clearHighlightedButtons()
-                globalObj.triggerCallView()
-//                setSelected()
+                if (!checked)
+                {
+                    checked = true;
+                    btnMakeCall.image = "./resources/apmplanner/toolbar/end_call.png"
+                    setImage()
+                }
+                else
+                {
+                    checked = false;
+                    btnMakeCall.image = "./resources/apmplanner/toolbar/start_call.png"
+                    setImage()
+                }
+
+                setUnselected()
             }
         }
 

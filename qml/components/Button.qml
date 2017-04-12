@@ -23,6 +23,15 @@ Rectangle {
     property alias image: buttonImage.source
     property int margins: 2
     property bool selected: false
+    property bool checked: false
+
+    function setImage(){
+        buttonImage.source = image;
+    }
+
+//    function setUnselected(){
+//        selected = false;
+//    }
 
     function setSelected(){
         selected = true;
