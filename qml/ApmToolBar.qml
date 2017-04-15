@@ -260,31 +260,31 @@ Rectangle {
             color: "black"
         }
 
-        Rectangle {
-            id: sipIDRect
+//        Rectangle {
+//            id: sipIDRect
 
-            width: 100
-            height: parent.height/3
-            anchors.verticalCenter: parent.verticalCenter
-            color: "black"
-            radius: 3
-            Text {
-                id: sipID
-                text: qsTr("SIP ID: aqs346f")
-                color: "white"
-            }
+//            width: 100
+//            height: parent.height/3
+//            anchors.verticalCenter: parent.verticalCenter
+//            color: "black"
+//            radius: 3
+//            Text {
+//                id: sipID
+//                text: qsTr("SIP ID: aqs346f")
+//                color: "white"
+//            }
 
-//                Text {
-//                    id: sipID
-//                    anchors.centerIn: parent
-//                    verticalAlignment: Text.AlignVCenter
-//                    horizontalAlignment: Text.AlignHCenter
-//                    anchors.verticalCenter: parent.verticalCenter
-//                    font.pixelSize: 20
-//                    smooth: true
-//                }
+////                Text {
+////                    id: sipID
+////                    anchors.centerIn: parent
+////                    verticalAlignment: Text.AlignVCenter
+////                    horizontalAlignment: Text.AlignHCenter
+////                    anchors.verticalCenter: parent.verticalCenter
+////                    font.pixelSize: 20
+////                    smooth: true
+////                }
 
-        }
+//        }
 
         Rectangle { // Spacer
             id: statusSpacerId2
@@ -420,5 +420,36 @@ Rectangle {
             height: parent.height
             color: "black"
         }
+    }
+
+    Text {
+        id: sip_id_label
+        x: 577
+        y: 51
+        color: "#ffffff"
+        text: qsTr("SIP ID:")
+        font.pixelSize: 12
+    }
+
+    Text {
+        id: sip_id
+        x: 615
+        y: 51
+        width: 81
+        height: 13
+        color: "#ffffff"
+        text: qsTr("ae23crf")
+        font.pixelSize: 12
+    }
+
+    Text {
+        id: call_status
+        x: 681
+        y: 51
+        width: 106
+        height: 13
+        color: "#ffffff"
+        text: qsTr("Connecting..")
+        font.pixelSize: 12
     }
 }
