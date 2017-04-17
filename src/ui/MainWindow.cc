@@ -72,6 +72,8 @@ This file is part of the QGROUNDCONTROL project
 #include "PxQuadMAV.h"
 #include "SlugsMAV.h"
 #include "LogCompressor.h"
+#include "call/myCall.h"
+
 
 #include <QSettings>
 #include <QDockWidget>
@@ -278,7 +280,8 @@ MainWindow::MainWindow(QWidget *parent):
 
     m_apmToolBar = new APMToolBar();
     m_apmToolBar->setFlightViewAction(ui.actionFlightView);
-    m_apmToolBar->setCallViewAction(ui.actionCallView);
+//    m_apmToolBar->setCallViewAction(ui.actionCallView);
+    connect(ui.actionCallView, SIGNAL(triggered(bool)), m_apmToolBar, SLOT(handle_call(bool)));
     m_apmToolBar->setFlightPlanViewAction(ui.actionMissionView);
     m_apmToolBar->setInitialSetupViewAction(ui.actionHardwareConfig);
     m_apmToolBar->setConfigTuningViewAction(ui.actionSoftwareConfig);
@@ -1759,7 +1762,7 @@ void MainWindow::connectCommonActions()
 
     // Views actions
     connect(ui.actionFlightView, SIGNAL(triggered()), this, SLOT(loadPilotView()));
-    connect(ui.actionCallView, SIGNAL(triggered()), this, SLOT(loadCallView()));
+    connect(ui.actionCallView, SIGNAL(triggered()), this, SLOT(initiateCall()));
     connect(ui.actionSimulation_View, SIGNAL(triggered()), this, SLOT(loadSimulationView()));
     connect(ui.actionEngineersView, SIGNAL(triggered()), this, SLOT(loadEngineerView()));
     connect(ui.actionMissionView, SIGNAL(triggered()), this, SLOT(loadOperatorView()));
@@ -2426,6 +2429,16 @@ void MainWindow::loadCallView()
         ui.actionCallView->setChecked(true);
         loadViewState();
     }
+}
+
+void MainWindow::initiateCall()
+{
+    qDebug() << "APMToolBar::initiateCall";
+
+    CCall obj;
+    obj.Initialize();
+    obj.SetSIPAddress("sip:swapan_gh@sip.linphone.org");
+    obj.StartCall();
 }
 
 void MainWindow::loadSimulationView()

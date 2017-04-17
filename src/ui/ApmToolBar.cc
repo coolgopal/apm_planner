@@ -33,6 +33,8 @@ This file is part of the APM_PLANNER project
 #include "LinkManager.h"
 #include "MainWindow.h"
 #include "ArduPilotMegaMAV.h"
+#include "call/myCall.h"
+
 #include <QQmlContext>
 #include <QGraphicsObject>
 #include <QTimer>
@@ -203,8 +205,23 @@ void APMToolBar::setFlightViewAction(QAction *action)
 
 void APMToolBar::setCallViewAction(QAction *action)
 {
-    connect(this, SIGNAL(triggerCallView()), action, SIGNAL(triggered()));
+    connect(this, SIGNAL(triggerCallView()), action, SLOT(start_sip_call));
 }
+
+void APMToolBar::handle_call(bool is_start)
+{
+    QLOG_DEBUG() << "APMToolBar::handle_call: " << is_start;
+}
+
+//void APMToolBar::start_sip_call(void)
+//{
+//    QLOG_DEBUG() << "APMToolBar::initiateCall";
+
+//    CCall *obj = new CCall();
+//    obj->Initialize();
+//    obj->SetSIPAddress("sip:swapan_gh@sip.linphone.org");
+//    obj->StartCall();
+//}
 
 void APMToolBar::setFlightPlanViewAction(QAction *action)
 {

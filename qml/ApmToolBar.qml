@@ -230,6 +230,8 @@ Rectangle {
                     btnMakeCall.label = "END CALL"
                     btnMakeCall.image = "./resources/apmplanner/toolbar/end_call.png"
                     setImage()
+                    globalObj.handle_call(checked)
+//                    start_sip_call()
                 }
                 else
                 {
@@ -237,6 +239,7 @@ Rectangle {
                     btnMakeCall.label = "CALL"
                     btnMakeCall.image = "./resources/apmplanner/toolbar/start_call.png"
                     setImage()
+                    globalObj.handle_call(checked)
                 }
 
                 setUnselected()

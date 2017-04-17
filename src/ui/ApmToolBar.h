@@ -56,6 +56,8 @@ public:
     void setConnectMAVAction(QAction *action);
     
     void setModeText(const QString &text);
+
+//    void start_sip_call(void);
 signals:
     void triggerFlightView();    
     void triggerCallView();
@@ -69,6 +71,8 @@ signals:
     void MAVConnected(bool connected);
 
 public slots:
+//    void start_sip_call(void);
+    void handle_call(bool is_start);
     void selectFlightView();
     void selectCallView();
     void selectFlightPlanView();

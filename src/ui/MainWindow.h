@@ -235,6 +235,8 @@ public slots:
     void loadPilotView();
     /** @brief Load view for SIP calling */
     void loadCallView();
+    /** @brief Load view for SIP calling */
+    void initiateCall();
     /** @brief Load view for simulation */
     void loadSimulationView();
     /** @brief Load view for engineer */
