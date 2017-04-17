@@ -185,6 +185,7 @@ LinuxBuild {
     LIBS += -lsndfile -lasound
     LIBS += -lz
     LIBS += -lssl -lcrypto
+    LIBS += -llinphone -lpthread
     DEFINES += OPENSSL
 }
 
@@ -314,7 +315,8 @@ INCLUDEPATH += \
     src/ui/mission \
     src/ui/designer \
     src/ui/configuration \
-    src/output
+    src/output \
+    /usr/include/linphone
 
 FORMS += \
     src/ui/MainWindow.ui \
@@ -687,7 +689,12 @@ HEADERS += \
     src/ui/Loghandling/LogdataStorage.h \
     src/ui/Loghandling/LogExporter.h \
     src/ui/Loghandling/LogAnalysis.h \
-    src/callviewwidget.h
+    src/callviewwidget.h \
+    src/call/myCall.h \
+    src/call/myGetStatus.h \
+    src/call/myStartCall.h \
+    src/call/myStopCall.h \
+    src/call/myThread.h
 
 SOURCES += src/main.cc \
     src/QGCCore.cc \
@@ -914,7 +921,9 @@ SOURCES += src/main.cc \
     src/ui/Loghandling/LogdataStorage.cpp \
     src/ui/Loghandling/LogExporter.cpp \
     src/ui/Loghandling/LogAnalysis.cpp \
-    src/callviewwidget.cpp
+    src/callviewwidget.cpp \
+    src/call/myCall.cpp \
+    src/call/myThread.cpp
 
 MacBuild | WindowsBuild : contains(GOOGLEEARTH, enable) { #fix this to make sense ;)
     message(Including support for Google Earth)
