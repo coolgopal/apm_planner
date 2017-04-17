@@ -452,7 +452,8 @@ FORMS += \
     src/ui/uas/PreFlightCalibrationDialog.ui \
     src/ui/configuration/RadioFlashWizard.ui \
     src/ui/LogAnalysis.ui \
-    src/callviewwidget.ui
+    src/callviewwidget.ui \
+    sipentrydialog.ui
 
 HEADERS += \
     src/MG.h \
@@ -694,7 +695,9 @@ HEADERS += \
     src/call/myGetStatus.h \
     src/call/myStartCall.h \
     src/call/myStopCall.h \
-    src/call/myThread.h
+    src/call/myThread.h \
+    sipentrydialog.h \
+    callmanager.h
 
 SOURCES += src/main.cc \
     src/QGCCore.cc \
@@ -923,7 +926,9 @@ SOURCES += src/main.cc \
     src/ui/Loghandling/LogAnalysis.cpp \
     src/callviewwidget.cpp \
     src/call/myCall.cpp \
-    src/call/myThread.cpp
+    src/call/myThread.cpp \
+    sipentrydialog.cpp \
+    callmanager.cpp
 
 MacBuild | WindowsBuild : contains(GOOGLEEARTH, enable) { #fix this to make sense ;)
     message(Including support for Google Earth)
