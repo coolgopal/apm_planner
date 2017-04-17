@@ -33,6 +33,9 @@ This file is part of the APM_PLANNER project
 
 #include "UASInterface.h"
 #include "Settings.h"
+#include "call/myCall.h"
+
+
 #include <QAction>
 #include <QQuickView>
 
@@ -57,7 +60,8 @@ public:
     
     void setModeText(const QString &text);
 
-//    void start_sip_call(void);
+    void start_sip_call(void);
+    void end_sip_call(void);
 signals:
     void triggerFlightView();    
     void triggerCallView();
@@ -116,6 +120,8 @@ private:
     bool m_disableOverride;
     int m_currentLinkId;
     bool m_donated;
+
+    CCall *m_Call;
 };
 
 #endif // APMTOOLBAR_H
