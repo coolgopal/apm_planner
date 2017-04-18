@@ -94,6 +94,7 @@ public slots:
     void armingChanged(bool armed);
 
     void updateLinkDisplay(int linkid);
+    void updateSIPIDText(const char* sip_id);
     void newLinkCreated(int linkid);
 
     void navModeChanged(int uasid, int mode, const QString& text);

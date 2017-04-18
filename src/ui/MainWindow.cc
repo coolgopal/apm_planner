@@ -223,6 +223,7 @@ MainWindow::MainWindow(QWidget *parent):
     setCentralWidget(centerStack);
 
 
+
     // Load Toolbar
 #ifdef QGC_TOOLBAR_ENABLED
     toolBar = new QGCToolBar(this);

@@ -222,6 +222,7 @@ void APMToolBar::handle_call(bool is_start)
 
         SIPEntryDialog *dialogue = new SIPEntryDialog();
         dialogue->show();
+        connect(dialogue, SIGNAL(sip_id_update(const char*)), this, SLOT(updateSIPIDText(const char*)));
     }
     else
         CallManager::end_sip_call();
@@ -376,6 +377,12 @@ void APMToolBar::updateLinkDisplay(int linkid)
     bool connected = LinkManager::instance()->getLinkConnected(linkid);
     setConnection(connected);
     QLOG_DEBUG() << "APMToolBar: updateLinkDisplay" << linkName <<":"<< linkDetail <<" connected:" << connected;
+}
+
+void APMToolBar::updateSIPIDText(const char* sip_id)
+{
+    QObject *object = rootObject();
+    object->setProperty("sipIDText", sip_id);
 }
 
 void APMToolBar::newLinkCreated(int linkid)

@@ -23,6 +23,7 @@ void SIPEntryDialog::on_pushButton_ok_clicked()
 {
 
     CallManager::m_SIPAddress = strdup(ui->lineEditSIPAddress->text().toStdString().c_str());
+    emit sip_id_update(CallManager::m_SIPAddress);
     CallManager::start_sip_call();
     this->close();
 }

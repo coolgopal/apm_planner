@@ -15,6 +15,9 @@ public:
     explicit SIPEntryDialog(QWidget *parent = 0);
     ~SIPEntryDialog();
 
+signals:
+    void sip_id_update(const char* sip_id);
+
 private slots:
     void on_buttonBox_accepted();
 
