@@ -17,7 +17,7 @@ void CallManager::start_sip_call(void)
     m_Call = new CCall();
     m_Call->Initialize();
 //    m_Call->SetSIPAddress("sip:swapan_gh@sip.linphone.org");
-    m_Call->SetSIPAddress("m_SIPAddress");
+    m_Call->SetSIPAddress(m_SIPAddress);
     m_Call->StartCall();
 }
 

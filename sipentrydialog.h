@@ -18,6 +18,8 @@ public:
 private slots:
     void on_buttonBox_accepted();
 
+    void on_pushButton_ok_clicked();
+
 private:
     Ui::SIPEntryDialog *ui;
 };
