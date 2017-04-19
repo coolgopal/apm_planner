@@ -453,7 +453,7 @@ Rectangle {
         width: 106
         height: 13
         color: "#ffffff"
-        text: qsTr("Connecting..")
+        text: qsTr("")
         font.pixelSize: 12
     }
 }
