@@ -7,6 +7,8 @@ SIPEntryDialog::SIPEntryDialog(QWidget *parent) :
     ui(new Ui::SIPEntryDialog)
 {
     ui->setupUi(this);
+
+    ui->lineEditSIPAddress->setText(CallManager::m_SIPAddress);
 }
 
 SIPEntryDialog::~SIPEntryDialog()

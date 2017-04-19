@@ -442,7 +442,7 @@ Rectangle {
         width: 81
         height: 13
         color: "#ffffff"
-        text: qsTr("ae23crf")
+        text: qsTr("")
         font.pixelSize: 12
     }
 
