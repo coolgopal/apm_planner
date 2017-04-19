@@ -8,7 +8,7 @@ SIPEntryDialog::SIPEntryDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->lineEditSIPAddress->setText(CallManager::m_SIPAddress);
+    ui->lineEditSIPAddress->setText(CallManager::getInstance()->getSIPAddress());
 }
 
 SIPEntryDialog::~SIPEntryDialog()
@@ -24,8 +24,8 @@ void SIPEntryDialog::on_buttonBox_accepted()
 void SIPEntryDialog::on_pushButton_ok_clicked()
 {
 
-    CallManager::m_SIPAddress = strdup(ui->lineEditSIPAddress->text().toStdString().c_str());
-    emit sip_id_update(CallManager::m_SIPAddress);
-    CallManager::start_sip_call();
+    CallManager::getInstance()->setSIPAddress(strdup(ui->lineEditSIPAddress->text().toStdString().c_str()));
+    emit sip_id_update(CallManager::getInstance()->getSIPAddress());
+    CallManager::getInstance()->start_sip_call();
     this->close();
 }

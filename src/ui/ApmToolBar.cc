@@ -209,7 +209,7 @@ void APMToolBar::setFlightViewAction(QAction *action)
 
 void APMToolBar::setCallViewAction(QAction *action)
 {
-    connect(this, SIGNAL(triggerCallView()), action, SLOT(start_sip_call));
+//    connect(this, SIGNAL(triggerCallView()), action, SLOT(start_sip_call));
 }
 
 void APMToolBar::handle_call(bool is_start)
@@ -221,11 +221,13 @@ void APMToolBar::handle_call(bool is_start)
 //        start_sip_call();
 
         SIPEntryDialog *dialogue = new SIPEntryDialog();
+//        CallManager* callmanger = CallManager::getInstance();
         dialogue->show();
         connect(dialogue, SIGNAL(sip_id_update(const char*)), this, SLOT(updateSIPIDText(const char*)));
+        connect(CallManager::getInstance(), SIGNAL(call_status_update(const char*)), this, SLOT(updateCallStatusText(const char*)));
     }
     else
-        CallManager::end_sip_call();
+        CallManager::getInstance()->end_sip_call();
 }
 
 void APMToolBar::setFlightPlanViewAction(QAction *action)
@@ -383,6 +385,12 @@ void APMToolBar::updateSIPIDText(const char* sip_id)
 {
     QObject *object = rootObject();
     object->setProperty("sipIDText", sip_id);
+}
+
+void APMToolBar::updateCallStatusText(const char* call_status)
+{
+    QObject *object = rootObject();
+    object->setProperty("callStatusText", call_status);
 }
 
 void APMToolBar::newLinkCreated(int linkid)

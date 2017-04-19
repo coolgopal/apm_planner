@@ -29,6 +29,7 @@ Rectangle {
     property alias linkNameLabel: linkDevice.label
     property alias linkDetailLabel: linkDetail.label
     property alias sipIDText: sip_id.text
+    property alias callStatusText: call_status.text
     property bool connected: false
     property bool armed: false
     property string armedstr: "status"
@@ -232,7 +233,6 @@ Rectangle {
                     btnMakeCall.image = "./resources/apmplanner/toolbar/end_call.png"
                     setImage()
                     globalObj.handle_call(checked)
-//                    start_sip_call()
                 }
                 else
                 {

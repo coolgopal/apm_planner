@@ -4,20 +4,31 @@
 
 #include "call/myCall.h"
 
+#include <QObject>
 
-class CallManager
+
+class CallManager : public QObject
 {
+    Q_OBJECT
+
 public:
-    static char *m_SIPAddress;
-
-
     CallManager();
+//    virtual ~CallManager() {};
 
-    static void start_sip_call(void);
-    static void end_sip_call(void);
+    static CallManager* getInstance();
+
+    void setSIPAddress(char* sip_address);
+    char* getSIPAddress();
+    void start_sip_call(void);
+    void end_sip_call(void);
+
+signals:
+    void call_status_update(const char* call_status);
 
 private:
-    static CCall *m_Call;
+    char     *m_SIPAddress;
+    CCall    *m_Call;
+    static CallManager* m_CallManager;
 
 };
 

@@ -95,6 +95,7 @@ public slots:
 
     void updateLinkDisplay(int linkid);
     void updateSIPIDText(const char* sip_id);
+    void updateCallStatusText(const char* call_status);
     void newLinkCreated(int linkid);
 
     void navModeChanged(int uasid, int mode, const QString& text);
