@@ -448,7 +448,7 @@ Rectangle {
 
     Text {
         id: call_status
-        x: 681
+        x: 818
         y: 51
         width: 106
         height: 13
