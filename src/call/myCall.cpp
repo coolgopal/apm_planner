@@ -172,11 +172,11 @@ LinphoneCallState CCall::GetStatus(void)
  * Return type: int(always 0)
  * Description: Class in initializer function
  *****************************************************************************/
-int CCall::Initialize(void)
+int CCall::Initialize(LinphoneCallStateCb my_call_state_changed)
 {
 	do
 	{
-		m_vtable.call_state_changed = CCall::CallStateChanged;
+        m_vtable.call_state_changed = my_call_state_changed;
 
 		StartThread();
 

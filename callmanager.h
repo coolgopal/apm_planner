@@ -21,6 +21,7 @@ public:
     char* getSIPAddress();
     void start_sip_call(void);
     void end_sip_call(void);
+    static void call_state_changed(LinphoneCore *lc, LinphoneCall *call, LinphoneCallState cstate, const char *msg);
 
 signals:
     void call_status_update(const char* call_status);

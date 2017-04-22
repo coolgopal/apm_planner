@@ -2436,10 +2436,10 @@ void MainWindow::initiateCall()
 {
     qDebug() << "APMToolBar::initiateCall";
 
-    CCall obj;
-    obj.Initialize();
-    obj.SetSIPAddress("sip:swapan_gh@sip.linphone.org");
-    obj.StartCall();
+//    CCall obj;
+//    obj.Initialize();
+//    obj.SetSIPAddress("sip:swapan_gh@sip.linphone.org");
+//    obj.StartCall();
 }
 
 void MainWindow::loadSimulationView()

@@ -10,7 +10,7 @@ CallManager::CallManager()
 {
     m_SIPAddress = "";
     m_Call = new CCall();
-    m_Call->Initialize();
+    m_Call->Initialize(CallManager::call_state_changed);
 }
 
 CallManager* CallManager::getInstance()
@@ -39,7 +39,7 @@ void CallManager::start_sip_call(void)
     m_Call->SetSIPAddress(m_SIPAddress);
     m_Call->StartCall();
 
-    emit call_status_update("Calling..");
+//    emit call_status_update("Calling..");
 }
 
 void CallManager::end_sip_call(void)
@@ -49,5 +49,30 @@ void CallManager::end_sip_call(void)
     m_Call->StopCall();
 //    delete(m_Call);
 
-    emit call_status_update("Idle");
+//    emit call_status_update("Idle");
+}
+
+void CallManager::call_state_changed(LinphoneCore *lc, LinphoneCall *call, LinphoneCallState cstate, const char *msg)
+{
+    static char *call_state_text = "";
+    switch (cstate) {
+        case LinphoneCallOutgoingRinging:
+            call_state_text = strdup("Ringing..");
+            break;
+        case LinphoneCallConnected:
+            call_state_text = strdup("Connected..");
+            break;
+        case LinphoneCallEnd:
+            call_state_text = strdup("Disconnected..");
+            break;
+        case LinphoneCallError:
+            call_state_text = strdup("Failed..");
+            break;
+        default:
+//            call_state_text = strdup("...");
+            break;
+    }
+
+    emit getInstance()->call_status_update(call_state_text);
+    qDebug() << "call_state_changed: " << call_state_text;
 }

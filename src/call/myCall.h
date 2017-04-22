@@ -57,7 +57,7 @@ public:
 	LinphoneCallState GetStatus(void);
 
 	/* Class initializer function */
-	int Initialize(void);
+    int Initialize(LinphoneCallStateCb my_call_state_changed);
 
 	/**************************************************************************
 	 * Name: GetStatus
