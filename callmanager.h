@@ -25,6 +25,7 @@ public:
 
 signals:
     void call_status_update(const char* call_status);
+    void call_disconnected();
 
 private:
     char     *m_SIPAddress;

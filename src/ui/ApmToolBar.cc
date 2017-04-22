@@ -225,9 +225,15 @@ void APMToolBar::handle_call(bool is_start)
         dialogue->show();
         connect(dialogue, SIGNAL(sip_id_update(const char*)), this, SLOT(updateSIPIDText(const char*)));
         connect(CallManager::getInstance(), SIGNAL(call_status_update(const char*)), this, SLOT(updateCallStatusText(const char*)));
+        connect(CallManager::getInstance(), SIGNAL(call_disconnected()), this, SLOT(handleCallDisconnected()));
     }
     else
         CallManager::getInstance()->end_sip_call();
+}
+
+void APMToolBar::handleCallDisconnected()
+{
+    qDebug() << "APMToolBar::handleCallDisconnected";
 }
 
 void APMToolBar::setFlightPlanViewAction(QAction *action)

@@ -74,6 +74,7 @@ signals:
 public slots:
 //    void start_sip_call(void);
     void handle_call(bool is_start);
+    void handleCallDisconnected();
     void selectFlightView();
     void selectCallView();
     void selectFlightPlanView();

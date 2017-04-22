@@ -30,6 +30,7 @@ Rectangle {
     property alias linkDetailLabel: linkDetail.label
     property alias sipIDText: sip_id.text
     property alias callStatusText: call_status.text
+//    property alias callDisconnected: btnMakeCall.o
     property bool connected: false
     property bool armed: false
     property string armedstr: "status"

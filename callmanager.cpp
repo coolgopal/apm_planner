@@ -49,7 +49,7 @@ void CallManager::end_sip_call(void)
     m_Call->StopCall();
 //    delete(m_Call);
 
-//    emit call_status_update("Idle");
+    emit call_status_update("");
 }
 
 void CallManager::call_state_changed(LinphoneCore *lc, LinphoneCall *call, LinphoneCallState cstate, const char *msg)
@@ -64,9 +64,11 @@ void CallManager::call_state_changed(LinphoneCore *lc, LinphoneCall *call, Linph
             break;
         case LinphoneCallEnd:
             call_state_text = strdup("Disconnected..");
+            emit getInstance()->call_disconnected();
             break;
         case LinphoneCallError:
             call_state_text = strdup("Failed..");
+            emit getInstance()->call_disconnected();
             break;
         default:
 //            call_state_text = strdup("...");
