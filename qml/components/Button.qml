@@ -29,6 +29,11 @@ Rectangle {
         buttonImage.source = image;
     }
 
+    function sendClicked(){
+//        selected = true;
+        clicked();
+    }
+
 //    function setUnselected(){
 //        selected = false;
 //    }

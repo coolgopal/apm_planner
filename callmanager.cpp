@@ -11,6 +11,7 @@ CallManager::CallManager()
     m_SIPAddress = "";
     m_Call = new CCall();
     m_Call->Initialize(CallManager::call_state_changed);
+    m_in_call = false;
 }
 
 CallManager* CallManager::getInstance()
@@ -39,7 +40,8 @@ void CallManager::start_sip_call(void)
     m_Call->SetSIPAddress(m_SIPAddress);
     m_Call->StartCall();
 
-//    emit call_status_update("Calling..");
+    emit call_status_update("");
+    m_in_call = true;
 }
 
 void CallManager::end_sip_call(void)
@@ -49,7 +51,8 @@ void CallManager::end_sip_call(void)
     m_Call->StopCall();
 //    delete(m_Call);
 
-    emit call_status_update("");
+//    emit call_status_update("");
+    m_in_call = false;
 }
 
 void CallManager::call_state_changed(LinphoneCore *lc, LinphoneCall *call, LinphoneCallState cstate, const char *msg)
@@ -64,11 +67,19 @@ void CallManager::call_state_changed(LinphoneCore *lc, LinphoneCall *call, Linph
             break;
         case LinphoneCallEnd:
             call_state_text = strdup("Disconnected..");
-            emit getInstance()->call_disconnected();
+            if (getInstance()->m_in_call)
+            {
+                emit getInstance()->call_disconnected();
+            }
+            getInstance()->m_in_call = false;
             break;
         case LinphoneCallError:
             call_state_text = strdup("Failed..");
-            emit getInstance()->call_disconnected();
+            if (getInstance()->m_in_call)
+            {
+                emit getInstance()->call_disconnected();
+            }
+            getInstance()->m_in_call = false;
             break;
         default:
 //            call_state_text = strdup("...");

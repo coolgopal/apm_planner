@@ -36,7 +36,6 @@ This file is part of the APM_PLANNER project
 #include "sipentrydialog.h"
 #include "callmanager.h"
 
-
 #include <QQmlContext>
 #include <QGraphicsObject>
 #include <QTimer>
@@ -110,6 +109,7 @@ APMToolBar::APMToolBar(QWindow *parent):
     connect(LinkManager::instance(),SIGNAL(linkChanged(int)),this,SLOT(updateLinkDisplay(int)));
 
     connect(this, SIGNAL(triggerDonateView()), this, SLOT(selectDonateView()));
+
 }
 
 void APMToolBar::checkAdvancedMode(bool checked)
@@ -226,6 +226,9 @@ void APMToolBar::handle_call(bool is_start)
         connect(dialogue, SIGNAL(sip_id_update(const char*)), this, SLOT(updateSIPIDText(const char*)));
         connect(CallManager::getInstance(), SIGNAL(call_status_update(const char*)), this, SLOT(updateCallStatusText(const char*)));
         connect(CallManager::getInstance(), SIGNAL(call_disconnected()), this, SLOT(handleCallDisconnected()));
+
+//        QObject* callButton = rootObject()->findChild<QObject*>("btnMakeCall");
+//        connect(CallManager::getInstance(), SIGNAL(call_disconnected()), callButton, SIGNAL(clicked()));
     }
     else
         CallManager::getInstance()->end_sip_call();
@@ -234,6 +237,7 @@ void APMToolBar::handle_call(bool is_start)
 void APMToolBar::handleCallDisconnected()
 {
     qDebug() << "APMToolBar::handleCallDisconnected";
+    QMetaObject::invokeMethod(rootObject(), "handleCallDisconnected");
 }
 
 void APMToolBar::setFlightPlanViewAction(QAction *action)
