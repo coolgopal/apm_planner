@@ -30,7 +30,7 @@ signals:
 private:
     char     *m_SIPAddress;
     CCall    *m_Call;
-    bool     m_in_call;
+//    bool     m_in_call;
 
     static CallManager* m_CallManager;
 

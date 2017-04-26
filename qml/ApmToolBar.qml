@@ -51,6 +51,7 @@ Rectangle {
     {
         console.log("APMToolBar.qml: handleCallDisconnected")
         btnMakeCall.sendClicked();
+//        btnMakeCall.checked = false;
     }
 
     function setArmed(armedState) {
